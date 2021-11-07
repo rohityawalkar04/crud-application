@@ -4,6 +4,9 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index, :create]
   resources :players
+  resources :sessions, only: [:create]
+
+  get "log_out" => "sessions#destroy"
 
   # below are 7 restfull routes
 

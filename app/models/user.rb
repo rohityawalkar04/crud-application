@@ -6,4 +6,7 @@ class User < ApplicationRecord
   # throws error if pass and pass_confirm doesn't matches
   # u.authenticate("any_password") -> false i wrong, object if right password
   has_secure_password
+  EMAIL_VALIDATOR_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+  validates :name, :email, presence: true
+  validates :email, format: { with: EMAIL_VALIDATOR_REGEX, :multiline => true }, uniqueness: { :case_sensitive => false }
 end
