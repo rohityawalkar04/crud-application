@@ -18,7 +18,7 @@
                 <td><%= player.last_name %></td>
                 <td><%= link_to "Show Player", player_path(player.id) %><td> |
                 <%# <td><a href="/players/< player.id >">Show</a></td> %>
-                <td><%= link_to "Edit Player", player_edit_path(player.id)%>  |
+                <td><%= link_to "Edit Player", edit_player_path(player.id)%>  |
                 <%# <td><a href="/players/< player.id >/edit">Edit</a></td> %>
                 <td><%= link_to "Delete Player", player_path(player.id), data: { method: "delete", confirm: "Are you sure?" } %>
                 <%# <td><a href="/players/< player.id >" data-method="delete" data-confirm="Are you sure?">Delete</td> %>
@@ -28,4 +28,4 @@
 </table>
 
 <%# <a href="players/new">New Player</a> %>
-<%= link_to "New Player", players_new_path %>
+<%= link_to "New Player", new_player_path %>
