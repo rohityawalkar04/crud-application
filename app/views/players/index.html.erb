@@ -1,0 +1,31 @@
+<%= content_for(:title, "Players") %>
+
+<%# below is helper method in to manage 1 player, many players magic %>
+<h1>There are <%= pluralize(@players.count, "player") %> in our league</h1>
+
+<table>
+    <thead>
+        <tr>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        <% @players.each do |player| %>
+            <tr>
+                <td><%= player.first_name %></td>
+                <td><%= player.last_name %></td>
+                <td><%= link_to "Show Player", player_path(player.id) %><td>
+                <%# <td><a href="/players/< player.id >">Show</a></td> %>
+                <td><%= link_to "Edit Player", player_edit_path(player.id)%>
+                <%# <td><a href="/players/< player.id >/edit">Edit</a></td> %>
+                <td><%= link_to "Delete Player", player_path(player.id), data: { method: "delete", confirm: "Are you sure?" } %>
+                <%# <td><a href="/players/< player.id >" data-method="delete" data-confirm="Are you sure?">Delete</td> %>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
+
+<%# <a href="players/new">New Player</a> %>
+<%= link_to "New Player", players_new_path %>

@@ -1,0 +1,25 @@
+<% content_for(:title, "#{@player.first_name}'s Profile") %>
+
+<h1>In edit page</h1>
+<% if flash[:errors] %>
+    <% flash[:errors].each do |error| %>
+        <p><%= error %></p>
+    <% end %>
+<% end %>
+
+<form action="/players/<%= @player.id %>" method="post">
+    <%# originally html only allows get and post requests, we cannot say patch, delete, put requests. What happens is,
+        when _method comes into the server, the middleware of rails will override post method to patch %>
+    <input type="hidden" name="_method" value="patch">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <p>
+        <label>First Name:</label>
+        <input type="text" name="player[first_name]" value="<%= @player.first_name %>">
+    </p>
+    <p>
+        <label>Last Name:</label>
+        <input type="text" name="player[last_name]" value="<%= @player.last_name %>">
+    </p>
+
+    <input type="submit" value="Update">
+</form>
